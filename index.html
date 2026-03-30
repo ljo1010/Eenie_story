@@ -104,12 +104,14 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="Eanie" startnode="2" creator="Twine" creator-version="2.11.1" format="SugarCube" format-version="2.37.3" ifid="671E660E-2230-4205-AEFC-14C1B25B8EAA" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* === BASE === */
+	<tw-storydata name="Eanie" startnode="2" creator="Twine" creator-version="2.11.1" format="SugarCube" format-version="2.37.3" ifid="671E660E-2230-4205-AEFC-14C1B25B8EAA" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* === BASE === */
 html, body {
   background-color: #0a0f1a !important;
 }
 #story, #passages, .passage {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Lora', Georgia, serif;
   color: #c8d0dc;
 }
 
@@ -150,6 +152,22 @@ html, body {
 }
 .passage a:hover::before { width: 100%; }
 
+/* === YELLING SHAKE === */
+.yelling {
+  display: inline-block;
+  animation: shake 0.3s infinite alternate;
+  color: #ff6b6b;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(255, 107, 107, 0.6);
+}
+@keyframes shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-2px, 1px) rotate(-1deg); }
+  50% { transform: translate(2px, -1px) rotate(1deg); }
+  75% { transform: translate(-1px, -2px) rotate(-0.5deg); }
+  100% { transform: translate(1px, 2px) rotate(0.5deg); }
+}
+
 /* === GLITCH === */
 .glitch {
   animation: glitch 0.3s infinite;
@@ -168,11 +186,11 @@ html, body {
 /* === SHAKE === */
 .shake {
   display: inline-block;
-  animation: shake 0.4s infinite;
+  animation: shakeSide 0.4s infinite;
   color: #dba86a;
   font-weight: bold;
 }
-@keyframes shake {
+@keyframes shakeSide {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-3px) rotate(-1deg); }
   75% { transform: translateX(3px) rotate(1deg); }
@@ -261,6 +279,32 @@ html, body {
 @keyframes endingPulse {
   0%, 100% { text-shadow: 0 0 10px rgba(106,173,219,0.8), 0 0 40px rgba(70,130,180,0.3); }
   50% { text-shadow: 0 0 20px rgba(106,173,219,1), 0 0 60px rgba(70,130,180,0.6); }
+}
+
+/* === WHISPER === */
+.whisper {
+  display: inline-block;
+  animation: whisperFade 2s ease-in-out infinite alternate;
+  color: #8899aa;
+  font-style: italic;
+  letter-spacing: 0.15em;
+}
+@keyframes whisperFade {
+  0% { opacity: 0.4; filter: blur(0.5px); }
+  100% { opacity: 1; filter: blur(0); }
+}
+
+/* === SPEED-UP === */
+.speed-up {
+  display: inline-block;
+  animation: speedGrow 1.5s ease-in forwards;
+  font-weight: bold;
+  color: #ff9944;
+}
+@keyframes speedGrow {
+  0% { transform: scale(1); letter-spacing: 0; color: #ccaa66; }
+  50% { transform: scale(1.1); letter-spacing: 0.05em; color: #ff9944; }
+  100% { transform: scale(1.25); letter-spacing: 0.12em; color: #ff5544; text-shadow: 0 0 10px rgba(255, 85, 68, 0.6); }
 }
 
 /* === VIGNETTE === */
@@ -499,7 +543,7 @@ html, body {
 
   /* --- Scene Images (injected via JS after passage renders) --- */
   var sceneImages = {
-    "Start": "https://images.unsplash.com/photo-1534430480872-3498386e7856",
+    "Start": "https://images.squarespace-cdn.com/content/v1/566c4efe5a5668242bae4c95/1586554651354-WH6WWJ9P9Z7DMS7BTN7J/Nighttime+Aerial+of+Cleveland+Skyiline+%28Heritage+Park%29-1.jpg",
     "bar": "https://i.pinimg.com/1200x/71/8f/17/718f17fcab0bd4f65b8dbf7e3a328c31.jpg",
     "car": "https://i.pinimg.com/736x/17/48/a3/1748a3d11c142b41b10c757658e4f56d.jpg",
     "conflict": "https://images.unsplash.com/photo-1740872233154-b88852f89eda",
@@ -584,17 +628,20 @@ html, body {
 &lt;&lt;cacheaudio &quot;tires-screech&quot; &quot;sounds/tires-screech.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;heartbeat&quot; &quot;sounds/heartbeat.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;crying&quot; &quot;sounds/crying.mp3&quot;&gt;&gt;
-&lt;&lt;cacheaudio &quot;lets-go&quot; &quot;sounds/lets-go.mp3&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Start" tags="" position="150,125" size="200,200">&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;audio &quot;city-traffic&quot; loop volume 0.4 play&gt;&gt;You are a 14-year-old girl living in Cleveland in 2007.
+&lt;&lt;cacheaudio &quot;lets-go&quot; &quot;sounds/lets-go.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;crowd-noise&quot; &quot;sounds/crowd-noise.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;phone-vibe&quot; &quot;sounds/phone-vibe.mp3&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Start" tags="" position="150,125" size="200,200">&lt;&lt;audio &quot;city-traffic&quot; loop volume 0.4 play&gt;&gt;You are a 14-year-old girl living in Cleveland in 2007.
 You walk to a bar downtown.
-Through your mobile phone, you can hear your mom and dad yelling at each other.
-[[You arrive at the bar.|bar]]</tw-passagedata><tw-passagedata pid="3" name="bar" tags="" position="500,125" size="200,200">Your mom and dad are still yelling.
+Through your mobile phone, you can hear your mom and dad &lt;span class=&quot;yelling&quot;&gt;yelling&lt;/span&gt; at each other.
+[[You arrive at the bar.|bar]]</tw-passagedata><tw-passagedata pid="3" name="bar" tags="" position="500,125" size="200,200">&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;audio &quot;crowd-noise&quot; loop volume 0.2 play&gt;&gt;
+Your mom and dad are still &lt;span class=&quot;yelling&quot;&gt;yelling&lt;/span&gt;.
 Both are heavily drunk.
 Your mom hands you a car key.
-[[You take it. |car]]</tw-passagedata><tw-passagedata pid="4" name="car" tags="" position="775,125" size="200,200">&lt;&lt;audio &quot;city-traffic&quot; stop&gt;&gt;&lt;&lt;audio &quot;car-driving&quot; loop volume 0.5 play&gt;&gt;Sitting in the driver&#39;s seat, you start the car and drive home.
+[[You take it. |car]]</tw-passagedata><tw-passagedata pid="4" name="car" tags="" position="775,125" size="200,200">&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;audio &quot;city-traffic&quot; stop&gt;&gt;&lt;&lt;audio &quot;car-driving&quot; loop volume 0.5 play&gt;&gt;Sitting in the driver&#39;s seat, you start the car and drive home.
 Soon, you [[notice |conflict]] a police car approaching behind you.</tw-passagedata><tw-passagedata pid="5" name="conflict" tags="" position="1050,125" size="200,200">&lt;&lt;audio &quot;police-siren&quot; loop volume 0.3 play&gt;&gt;You don&#39;t have a valid permit.
-You asks whether you should pull over.
+You ask whether you should pull over.
 Your dad insists that you keep driving, while your mom says it will be okay under the circumstances. 
-Finally, you decide to[[stop|pull-over]].</tw-passagedata><tw-passagedata pid="6" name="pull-over" tags="" position="1000,375" size="200,200">&lt;&lt;audio &quot;car-driving&quot; stop&gt;&gt;&lt;&lt;audio &quot;police-siren&quot; volume 0.2&gt;&gt;&lt;&lt;audio &quot;heartbeat&quot; loop volume 0.5 play&gt;&gt;You slowly pull over.
+Finally, you decide to[[stop|pull-over]].</tw-passagedata><tw-passagedata pid="6" name="pull-over" tags="" position="975,375" size="200,200">&lt;&lt;audio &quot;car-driving&quot; stop&gt;&gt;&lt;&lt;audio &quot;police-siren&quot; volume 0.1&gt;&gt;&lt;&lt;audio &quot;heartbeat&quot; loop volume 1.0 play&gt;&gt;You slowly pull over.
 Then your dad suddenly yells that your mom has cocaine with her.
 He says that she will go to jail if she is caught.
 He orders you to punch it.
@@ -605,13 +652,13 @@ What would you do?
 A police officer is coming and asks you to show your driver&#39;s license.
 For some reason, the officer seems to be in a good mood.
 Actually, he is planning to ask his fiancee to marry him tonight.
-He asked me if I had a driver&#39;s license.
-[[Tell a lie |lie]]/[[Tell the truth |truth]]</tw-passagedata><tw-passagedata pid="8" name="pinch-it" tags="" position="1350,375" size="200,200">&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;audio &quot;tires-screech&quot; volume 0.7 play&gt;&gt;&lt;&lt;audio &quot;car-driving&quot; loop volume 0.4 play&gt;&gt;&lt;&lt;audio &quot;lets-go&quot; loop volume 0.8 play&gt;&gt;You slam the gas pedal right before the officer reaches your window.
+He asked you if you had a driver&#39;s license.
+[[Tell a lie |lie]]/[[Tell the truth |truth]]</tw-passagedata><tw-passagedata pid="8" name="pinch-it" tags="" position="1350,375" size="200,200">&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;audio &quot;lets-go&quot; volume 0.8 play&gt;&gt;&lt;&lt;audio &quot;tires-screech&quot; volume 0.7 play&gt;&gt;&lt;&lt;audio &quot;car-driving&quot; loop volume 0.4 play&gt;&gt;You slam the gas pedal right before the officer reaches your window.
 The tires screech as the car lurches forward into the dark road.
-Your dad screams, &quot;Go! Go! Go!&quot;
+Your dad screams, &lt;span class=&quot;yelling&quot;&gt;&quot;Go! Go! Go!&quot;&lt;/span&gt;
 Your mom is crying in the back seat, clutching the small bag in her jacket.
 The police siren wails behind you, red and blue lights filling the rearview mirror.
-Your heart is pounding so hard you can barely see straight.
+Your &lt;span class=&quot;heartbeat&quot;&gt;heart is pounding&lt;/span&gt; so hard you can barely see straight.
 You approach a fork in the road.
 
 [[Take the highway — try to outrun them.|chase]]
@@ -635,7 +682,7 @@ He calls for backup. Your parents are taken into custody. A social worker arrive
 
 Tonight was the worst night of your life. But it might also be the beginning of something better.
 
-THE END
+&lt;b&gt;THE END&lt;/b&gt;
 
 &lt;&lt;button &quot;Restart&quot;&gt;&gt;&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;goto &quot;Start&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="lie-result" tags="" position="350,900" size="200,200">&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;audio &quot;police-siren&quot; volume 0.2 play&gt;&gt;&lt;&lt;audio &quot;crying&quot; loop volume 0.4 play&gt;&gt;Your mom stumbles out of the car. The officer immediately notices she can barely stand.
 
@@ -659,10 +706,10 @@ Two hours later, your grandmother arrives. She holds you tight without saying a 
 
 You lied to the officer. But the truth came out anyway. It always does.
 
-THE END
+&lt;b&gt;THE END&lt;/b&gt;
 
 &lt;&lt;button &quot;Restart&quot;&gt;&gt;&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;goto &quot;Start&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="chase" tags="" position="1150,650" size="200,200">&lt;&lt;audio &quot;car-driving&quot; loop volume 0.6 play&gt;&gt;You swerve onto the highway, pushing the car as fast as it can go.
-The speedometer climbs — 70, 80, 90.
+The speedometer climbs — &lt;span class=&quot;speed-up&quot;&gt;70, 80, 90&lt;/span&gt;.
 
 Your dad keeps looking back. &quot;They&#39;re still behind us!&quot;
 
@@ -672,7 +719,7 @@ You have no choice. You slam the brakes.
 
 The car skids to a stop sideways across two lanes. Officers surround the vehicle with flashlights and drawn weapons.
 
-&quot;Hands where we can see them! All of you!&quot;
+&lt;span class=&quot;yelling&quot;&gt;&quot;Hands where we can see them! All of you!&quot;&lt;/span&gt;
 
 Your parents are pulled out and handcuffed. The cocaine is found immediately.
 
@@ -682,11 +729,11 @@ You sit in the back of a police cruiser, shaking. A female officer brings you a 
 
 You nod. You have nothing left to hide.
 
-THE END
+&lt;b&gt;THE END&lt;/b&gt;
 
 &lt;&lt;button &quot;Restart&quot;&gt;&gt;&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;goto &quot;Start&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="hide" tags="" position="1575,650" size="200,200">&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;audio &quot;heartbeat&quot; loop volume 0.5 play&gt;&gt;You yank the steering wheel right, diving into a dark residential street.
 
-You kill the headlights. Your dad whispers, &quot;Keep going, keep going...&quot;
+You kill the headlights. Your dad whispers, &lt;span class=&quot;whisper&quot;&gt;&quot;Keep going, keep going...&quot;&lt;/span&gt;
 
 You crawl through the neighborhood, barely breathing. The sirens fade into the distance.
 
@@ -711,11 +758,11 @@ You lean your head against the cold window and close your eyes.
 
 For the first time tonight, you feel safe.
 
-THE END
+&lt;b&gt;THE END&lt;/b&gt;
 
-&lt;&lt;button &quot;Restart&quot;&gt;&gt;&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;goto &quot;Start&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="run-end" tags="" position="1775,900" size="200,200">&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;audio &quot;heartbeat&quot; loop volume 0.4 play&gt;&gt;You throw open the door and run.
+&lt;&lt;button &quot;Restart&quot;&gt;&gt;&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;goto &quot;Start&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="run-end" tags="" position="1775,900" size="200,200">&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;audio &quot;heartbeat&quot; loop volume 0.4 play&gt;&gt;&lt;&lt;audio &quot;phone-vibe&quot; volume 0.4 play&gt;&gt;You throw open the door and run.
 
-Behind you, your parents are shouting. The officers are shouting. Everything is noise.
+Behind you, your parents are &lt;span class=&quot;yelling&quot;&gt;shouting&lt;/span&gt;. The officers are &lt;span class=&quot;yelling&quot;&gt;shouting&lt;/span&gt;. Everything is noise.
 
 You run through someone&#39;s backyard, over a fence, down an alley.
 
@@ -733,7 +780,7 @@ Twenty minutes later, her old sedan pulls up to the alley. She doesn&#39;t ask q
 
 Tomorrow will be hard. But tonight, someone came for you.
 
-THE END
+&lt;b&gt;THE END&lt;/b&gt;
 
 &lt;&lt;button &quot;Restart&quot;&gt;&gt;&lt;&lt;audio &quot;:all&quot; stop&gt;&gt;&lt;&lt;goto &quot;Start&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
